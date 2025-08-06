@@ -9,7 +9,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import { User, Project, DashboardStats } from "../../types/index";
+import { User, Project, DashboardStats } from "../types/index";
 
 const Home: React.FC = () => {
   const mockUsers: User[] = [
@@ -147,9 +147,7 @@ const Home: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium text-gray-600">{title}</p>
-          <p className="text-2xl font-semibold text-gray-900 mt-2">
-            {value}
-          </p>
+          <p className="text-2xl font-semibold text-gray-900 mt-2">{value}</p>
           {change && (
             <p className="text-sm text-green-600 mt-1 flex items-center">
               <TrendingUp className="w-4 h-4 mr-1" />

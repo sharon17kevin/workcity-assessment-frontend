@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User, Project, DashboardStats } from '../types';
+import { User, Project, DashboardStats } from '../src/types';
 
 const api = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
