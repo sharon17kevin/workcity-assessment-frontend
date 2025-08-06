@@ -13,7 +13,7 @@ import { useDashboardStats } from '../hooks/useDashboard';
 import { useUsers } from '../hooks/useUsers';
 import { useProjects } from '../hooks/useProjects';
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   const { data: stats, isLoading: statsLoading } = useDashboardStats();
   const { data: users, isLoading: usersLoading } = useUsers();
   const { data: projects, isLoading: projectsLoading } = useProjects();
@@ -277,4 +277,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomePage;
