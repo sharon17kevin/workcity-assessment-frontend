@@ -5,11 +5,11 @@ import {
 
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useSidebarStore } from "../stores/useSideBarStore";
+
 
 const Navbar = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const navigation = useLocation();
+  const {openDrawer} = useSidebarStore()
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
 
@@ -38,7 +38,7 @@ const Navbar = () => {
         <div className="flex h-16 justify-between">
           <div className="flex items-center">
             <button
-              onClick={() => setSidebarOpen(true)}
+              onClick={openDrawer}
               className=" text-gray-500 hover:text-gray-700 mr-4"
             >
               {""}
