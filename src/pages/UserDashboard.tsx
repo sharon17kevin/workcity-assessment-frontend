@@ -11,11 +11,13 @@ import {
 import { useUsers } from '../hooks/useUsers';
 import { useUserStore } from '../stores/userStore';
 import { User } from '../types';
+import { useUserModalStore } from '../stores/useUsermodalStore';
+import UserModal from '../components/UserModal';
 
 const UserDashboard: React.FC = () => {
   const { data: users, isLoading, error } = useUsers();
   const { searchQuery, filterRole, setSearchQuery, setFilterRole } = useUserStore();
-  const [showAddModal, setShowAddModal] = useState(false);
+  const {openModal} = useUserModalStore();
 
   const filteredUsers = users?.filter(user => {
     const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -108,7 +110,7 @@ const UserDashboard: React.FC = () => {
           <p className="text-gray-600">Manage team members and their access</p>
         </div>
         <button 
-          onClick={() => setShowAddModal(true)}
+          onClick={openModal}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
         >
           <Plus className="w-4 h-4" />
@@ -254,6 +256,9 @@ const UserDashboard: React.FC = () => {
           ))}
         </div>
       )}
+      <UserModal
+        mode= 'create'
+      />
     </div>
   );
 };

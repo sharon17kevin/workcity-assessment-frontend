@@ -15,11 +15,13 @@ import {
 import { useProjects } from '../hooks/useProjects';
 import { useProjectStore } from '../stores/projectStore';
 import { Project } from '../types';
+import ProjectModal from '../components/ProjectModal';
+import { useProjectModalStore } from '../stores/useProjectmodalStore';
 
 const ProjectDashboard: React.FC = () => {
   const { data: projects, isLoading, error } = useProjects();
   const { searchQuery, filterStatus, filterPriority, setSearchQuery, setFilterStatus, setFilterPriority } = useProjectStore();
-  const [showAddModal, setShowAddModal] = useState(false);
+  const {openModal} = useProjectModalStore()
 
   const filteredProjects = projects?.filter(project => {
     const matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -163,7 +165,7 @@ const ProjectDashboard: React.FC = () => {
           <p className="text-gray-600">Track and manage all your projects</p>
         </div>
         <button 
-          onClick={() => setShowAddModal(true)}
+          onClick={openModal}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
         >
           <Plus className="w-4 h-4" />
@@ -322,6 +324,9 @@ const ProjectDashboard: React.FC = () => {
           ))}
         </div>
       )}
+      <ProjectModal
+        mode='create'
+      />
     </div>
   );
 };
